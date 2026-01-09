@@ -101,6 +101,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/deniamount"
                         android:text="120 ₾"
                         android:textColor="#2E7D32"
                         android:layout_marginTop="4dp"
@@ -117,10 +118,11 @@
                     </View>
 
                     <TextView
+                        android:id="@+id/denistatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="გადახდილია ✅"
-                        android:textColor="2E7D32">
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -149,6 +151,7 @@
 
                     </ImageView>
                     <TextView
+                        android:id="@+id/gaziamount"
                         android:text="გაზი"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -176,10 +179,11 @@
                     </View>
 
                     <TextView
+                        android:id="@+id/gazistatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="გადახდილია ✅"
-                        android:textColor="2E7D32">
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -218,6 +222,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/wyaliamount"
                         android:text="120 ₾"
                         android:textColor="#2E7D32"
                         android:layout_marginTop="4dp"
@@ -234,10 +239,11 @@
                     </View>
 
                     <TextView
+                        android:id="@+id/wyalistatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="გადახდილია ✅"
-                        android:textColor="2E7D32">
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -277,6 +283,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/dasuftavebaamount"
                         android:text="120 ₾"
                         android:textColor="#2E7D32"
                         android:layout_marginTop="4dp"
@@ -293,10 +300,11 @@
                     </View>
 
                     <TextView
+                        android:id="@+id/dasuftavebastatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="გადახდილია ✅"
-                        android:textColor="2E7D32">
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -335,6 +343,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/telamount"
                         android:text="120 ₾"
                         android:textColor="#2E7D32"
                         android:layout_marginTop="4dp"
@@ -351,10 +360,11 @@
                     </View>
 
                     <TextView
+                        android:id="@+id/telstatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="გადახდილია ✅"
-                        android:textColor="2E7D32">
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -394,6 +404,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/sxvaamount"
                         android:text="120 ₾"
                         android:textColor="#2E7D32"
                         android:layout_marginTop="4dp"
@@ -410,10 +421,11 @@
                     </View>
 
                     <TextView
+                        android:id="@+id/sxvastatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="გადახდილია ✅"
-                        android:textColor="2E7D32">
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
