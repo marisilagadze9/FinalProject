@@ -70,6 +70,7 @@
             android:layout_height="wrap_content"
             android:columnCount="2">
             <androidx.cardview.widget.CardView
+                android:id="@+id/denicard"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
@@ -109,7 +110,7 @@
                         android:layout_height="wrap_content">
 
                     </TextView>
-                    
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -121,7 +122,7 @@
                         android:id="@+id/denistatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="გადახდილია ✅"
+                        android:text="გადახდის ვადა - "
                         android:textColor="#2E7D32">
 
                     </TextView>
@@ -131,6 +132,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/gazicard"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
@@ -151,7 +153,7 @@
 
                     </ImageView>
                     <TextView
-                        android:id="@+id/gaziamount"
+
                         android:text="გაზი"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -163,6 +165,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/gaziamount"
                         android:text="120 ₾"
                         android:textColor="#2E7D32"
                         android:layout_marginTop="4dp"
@@ -182,7 +185,7 @@
                         android:id="@+id/gazistatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="გადახდილია ✅"
+                        android:text="გადახდის ვადა - "
                         android:textColor="#2E7D32">
 
                     </TextView>
@@ -191,6 +194,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/wyalicard"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
@@ -242,7 +246,7 @@
                         android:id="@+id/wyalistatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="გადახდილია ✅"
+                        android:text="გადახდის ვადა - "
                         android:textColor="#2E7D32">
 
                     </TextView>
@@ -252,6 +256,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cleaningcard"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
@@ -303,7 +308,7 @@
                         android:id="@+id/dasuftavebastatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="გადახდილია ✅"
+                        android:text="გადახდის ვადა"
                         android:textColor="#2E7D32">
 
                     </TextView>
@@ -312,6 +317,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/intcard"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
@@ -363,16 +369,18 @@
                         android:id="@+id/telstatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="გადახდილია ✅"
+                        android:text="გადახდის ვადა - "
                         android:textColor="#2E7D32">
 
                     </TextView>
+
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/sxvacard"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
@@ -424,7 +432,7 @@
                         android:id="@+id/sxvastatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="გადახდილია ✅"
+                        android:text="გადახდის ვადა - "
                         android:textColor="#2E7D32">
 
                     </TextView>

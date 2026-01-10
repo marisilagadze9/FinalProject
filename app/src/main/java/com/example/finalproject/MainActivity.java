@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,6 +12,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView cleaningAmount, cleaningStatus;
     TextView tvAmount, tvStatus;
     TextView sxvaAmount, sxvaStatus;
+    CardView deni,wyali,gazi,dasuftaveba,tv,sxva;
 
 
     @Override
@@ -58,41 +61,46 @@ public class MainActivity extends AppCompatActivity {
         sxvaAmount=findViewById(R.id.sxvaamount);
         sxvaStatus=findViewById(R.id.sxvastatus);
 
+        deni=findViewById(R.id.denicard);
+        wyali=findViewById(R.id.wyalicard);
+        gazi=findViewById(R.id.gazicard);
+        dasuftaveba=findViewById(R.id.cleaningcard);
+        tv=findViewById(R.id.intcard);
+        sxva=findViewById(R.id.sxvacard);
+
 
         ActivityResultLauncher<Intent> launcher=
                 registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                         result->{
-                            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                                String item = result.getData().getStringExtra("item");
-                                String amount = result.getData().getStringExtra("amount");
-                                boolean paid = result.getData().getBooleanExtra("paid", false);
-
+                            if (result.getResultCode()==RESULT_OK && result.getData()!=null) {
+                                String item=result.getData().getStringExtra("item");
+                                String amount=result.getData().getStringExtra("amount");
+                                boolean paid=result.getData().getBooleanExtra("paid", false);
+                                String d=result.getData().getStringExtra("date");
 
                                 switch (item) {
                                     case "დენი":
-                                        deniAmount.setText(amount + " ₾");
-                                        deniStatus.setText(paid ? "გადახდილია ✅" : "გადაუხდელია ❌");
+                                        updatecard(deni, deniAmount, deniStatus, amount, paid,d);
                                         break;
+
                                     case "გაზი":
-                                        gasAmount.setText(amount + " ₾");
-                                        gasStatus.setText(paid ? "გადახდილია ✅" : "გადაუხდელია ❌");
+                                        updatecard(gazi, gasAmount, gasStatus, amount, paid,d);
                                         break;
+
                                     case "წყალი":
-                                        waterAmount.setText(amount + " ₾");
-                                        waterStatus.setText(paid ? "გადახდილია ✅" : "გადაუხდელია ❌");
+                                        updatecard(wyali, waterAmount, waterStatus, amount, paid,d);
                                         break;
+
                                     case "დასუფთავება":
-                                        cleaningAmount.setText(amount + " ₾");
-                                        cleaningStatus.setText(paid ? "გადახდილია ✅" : "გადაუხდელია ❌");
+                                        updatecard(dasuftaveba, cleaningAmount, cleaningStatus, amount, paid,d);
                                         break;
+
                                     case "ტელევიზია/ინტერნეტი":
-                                        tvAmount.setText(amount + " ₾");
-                                        tvStatus.setText(paid ? "გადახდილია ✅" : "გადაუხდელია ❌");
+                                        updatecard(tv, tvAmount, tvStatus, amount, paid,d);
                                         break;
 
                                     case "სხვა":
-                                        sxvaAmount.setText(amount + " ₾");
-                                        sxvaStatus.setText(paid ? "გადახდილია ✅" : "გადაუხდელია ❌");
+                                        updatecard(sxva, sxvaAmount, sxvaStatus, amount, paid,d);
                                         break;
                                 }
                             }
@@ -107,5 +115,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    void updatecard(CardView card,TextView newamount,TextView newstatus,String a,boolean p,String date){
+        newamount.setText(a + "₾");
+        if(p){
+            newstatus.setText("გადახდილია - "+ date);
+            card.setCardBackgroundColor(Color.parseColor("#E8F5E9"));
+        }
+        else{
+            newstatus.setText("ვადა: " +date);
+            card.setCardBackgroundColor(Color.parseColor("#FDECEA"));
+        }
     }
 }

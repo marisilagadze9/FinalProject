@@ -64,12 +64,14 @@
 
             </TextView>
             <EditText
+                android:id="@+id/amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/amount"
                 android:hint="₾"
                 android:inputType="number"
-                android:textSize="16sp">
+                android:textSize="16sp"
+                android:background="@null"
+                android:padding="12dp">
 
             </EditText>
 
@@ -80,6 +82,7 @@
                 android:gravity="center_vertical"
                 android:layout_marginTop="16dp"
                 >
+
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,12 +101,53 @@
                 </TextView>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="გადახდის ვადა"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="16dp">
+
+            </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/selectdate"
+                    android:text="აირჩიე თარიღი"
+                    android:drawableLeft="@android:drawable/ic_menu_my_calendar"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:backgroundTint="#E0E0E0"
+                    android:textColor="#000000">
+
+                </Button>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/datetext"
+                    android:text="არჩეული თარიღი"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp">
+
+                </TextView>
+
+            </LinearLayout>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="შენახვა"
                 android:layout_marginTop="24dp"
-                android:id="@+id/save">
+                android:id="@+id/save"
+                android:backgroundTint="#2E7D32"
+                android:textColor="#FFFFFF">
 
             </Button>
         </LinearLayout>
