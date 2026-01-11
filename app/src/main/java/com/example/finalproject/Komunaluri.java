@@ -15,6 +15,13 @@ public class Komunaluri {
         this.date=date;
 
     }
+
+    Komunaluri(String name, double amount, boolean paid, String date) {
+        this.name=name;
+        this.amount=amount;
+        this.paid=paid;
+        this.date=date;
+    }
     int getId(){return id;}
     String getName(){return name;}
     double getAmount(){return amount;}

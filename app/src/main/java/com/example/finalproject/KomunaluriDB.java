@@ -14,7 +14,7 @@ import java.util.List;
 public class KomunaluriDB extends SQLiteOpenHelper {
 
 
-    final String DB_NAME="komunaluriDB";
+    final String DB_NAME="komunaluri.db";
     final int DB_VERSION=1;
 
     final String TABLE="komunaluri";
@@ -86,4 +86,21 @@ public class KomunaluriDB extends SQLiteOpenHelper {
         cur.close();
         return list;
     }
+
+    public Komunaluri getByName(String name){
+        SQLiteDatabase db=getReadableDatabase();
+        Cursor cur=db.query(TABLE, null, COL_NAME + "=?", new String[]{ name },
+                null, null, null);
+        Komunaluri k=null;
+        if(cur.moveToFirst()){
+            int id=cur.getInt(cur.getColumnIndexOrThrow(COL_ID));
+            double amount=cur.getDouble(cur.getColumnIndexOrThrow(COL_AMOUNT));
+            boolean paid=cur.getInt(cur.getColumnIndexOrThrow(COL_PAID)) == 1;
+            String date=cur.getString(cur.getColumnIndexOrThrow(COL_DATE));
+            k=new Komunaluri(id, name, amount, paid, date);
+        }
+        cur.close();
+        return k;
+    }
+
 }

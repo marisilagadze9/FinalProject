@@ -28,6 +28,8 @@ public class Add extends AppCompatActivity {
     Button selectdate;
     TextView textdate;
 
+    KomunaluriDB db;
+    final Calendar calendar=Calendar.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class Add extends AppCompatActivity {
         back=findViewById(R.id.back);
         selectdate=findViewById(R.id.selectdate);
         textdate=findViewById(R.id.datetext);
-        final Calendar calendar=Calendar.getInstance();
+        db=new KomunaluriDB(this,"Komunaluri.db",null,1);
+
 
         String[] items={
                 "დენი","გაზი","წყალი","დასუფთავება","ტელევიზია/ინტერნეტი","სხვა"
@@ -78,17 +81,28 @@ public class Add extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String i=item.getSelectedItem().toString();
-                String a=amount.getText().toString();
-                boolean p=paid.isChecked();
-                String date=textdate.getText().toString();
+                if (amount.getText().toString().isEmpty()) {
+                    amount.setError("შეიყვანე თანხა");
+                    return;
+                }
 
-                Intent data=new Intent();
-                data.putExtra("item",i);
-                data.putExtra("amount",a);
-                data.putExtra("paid",p);
-                data.putExtra("date",date);
-                setResult(RESULT_OK,data);
+                String name=item.getSelectedItem().toString();
+                double a=Double.parseDouble(amount.getText().toString());
+                boolean ispaid=paid.isChecked();
+
+                String date;
+                if (ispaid) {
+                    SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    date=sdf.format(Calendar.getInstance().getTime());
+                } else {
+                    if (textdate.getText().toString().isEmpty()) {
+                        textdate.setError("აირჩიე გადახდის ვადა");
+                        return;
+                    }
+                    date=textdate.getText().toString();
+                }
+
+                db.add(new Komunaluri(name, a, ispaid, date));
                 finish();
             }
         });

@@ -60,29 +60,33 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/home"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="641dp"
         android:layout_weight="1"
-        android:padding="16dp"
-        android:id="@+id/home">
+        android:padding="16dp">
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/denicard"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardElevation="4dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="12dp">
+
                     <ImageView
                         android:id="@+id/imgdeni"
                         android:layout_width="32dp"
@@ -90,24 +94,25 @@
                         app:tint="#2E7D32">
 
                     </ImageView>
+
                     <TextView
-                        android:text="დენი"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
-                        android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="დენი"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold">
 
                     </TextView>
 
                     <TextView
                         android:id="@+id/deniamount"
-                        android:text="120 ₾"
-                        android:textColor="#2E7D32"
-                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="120 ₾"
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -137,14 +142,16 @@
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardElevation="4dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="12dp">
+
                     <ImageView
                         android:id="@+id/imggass"
                         android:layout_width="32dp"
@@ -152,25 +159,26 @@
                         app:tint="#2E7D32">
 
                     </ImageView>
+
                     <TextView
 
-                        android:text="გაზი"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
-                        android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="გაზი"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold">
 
                     </TextView>
 
                     <TextView
                         android:id="@+id/gaziamount"
-                        android:text="120 ₾"
-                        android:textColor="#2E7D32"
-                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="120 ₾"
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -199,14 +207,16 @@
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardElevation="4dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="12dp">
+
                     <ImageView
                         android:id="@+id/imgwyali"
                         android:layout_width="32dp"
@@ -214,24 +224,25 @@
                         app:tint="#2E7D32">
 
                     </ImageView>
+
                     <TextView
-                        android:text="წყალი"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
-                        android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="წყალი"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold">
 
                     </TextView>
 
                     <TextView
                         android:id="@+id/wyaliamount"
-                        android:text="120 ₾"
-                        android:textColor="#2E7D32"
-                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="120 ₾"
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -261,14 +272,16 @@
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardElevation="4dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="12dp">
+
                     <ImageView
                         android:id="@+id/imgdasuftaveba"
                         android:layout_width="32dp"
@@ -276,24 +289,25 @@
                         app:tint="#2E7D32">
 
                     </ImageView>
+
                     <TextView
-                        android:text="დასუფთავება"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
-                        android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="დასუფთავება"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold">
 
                     </TextView>
 
                     <TextView
                         android:id="@+id/dasuftavebaamount"
-                        android:text="120 ₾"
-                        android:textColor="#2E7D32"
-                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="120 ₾"
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -322,14 +336,16 @@
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardElevation="4dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="12dp">
+
                     <ImageView
                         android:id="@+id/imginterneti"
                         android:layout_width="32dp"
@@ -337,24 +353,25 @@
                         app:tint="#2E7D32">
 
                     </ImageView>
+
                     <TextView
-                        android:text="ტელევიზია/ინტერნეტი"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
-                        android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="ტელევიზია/ინტერნეტი"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold">
 
                     </TextView>
 
                     <TextView
                         android:id="@+id/telamount"
-                        android:text="120 ₾"
-                        android:textColor="#2E7D32"
-                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="120 ₾"
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -385,14 +402,16 @@
                 android:layout_height="160dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardElevation="4dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="12dp">
+
                     <ImageView
                         android:id="@+id/imgsxva"
                         android:layout_width="32dp"
@@ -400,24 +419,25 @@
                         app:tint="#2E7D32">
 
                     </ImageView>
+
                     <TextView
-                        android:text="სხვა"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
-                        android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="სხვა"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold">
 
                     </TextView>
 
                     <TextView
                         android:id="@+id/sxvaamount"
-                        android:text="120 ₾"
-                        android:textColor="#2E7D32"
-                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="120 ₾"
+                        android:textColor="#2E7D32">
 
                     </TextView>
 
@@ -444,9 +464,10 @@
     </ScrollView>
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:id="@+id/bottom">
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/bottom"
+        android:layout_gravity="bottom">
 
     </FrameLayout>
 
