@@ -1,7 +1,11 @@
 package com.example.finalproject;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,8 +15,11 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,12 +46,15 @@ public class MainActivity extends AppCompatActivity {
     CardView deni,wyali,gazi,dasuftaveba,tv,sxva;
     KomunaluriDB db;
 
+    private final int SMS_PERMISSION_CODE=101;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         title=findViewById(R.id.title);
         add=findViewById(R.id.add);
         date=findViewById(R.id.date);
@@ -93,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_SMS},SMS_PERMISSION_CODE);
+        }
+        else{
+            readSMS();
+        }
         loadData();
 
     }
@@ -101,6 +119,101 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadData();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode==SMS_PERMISSION_CODE){
+            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                readSMS();
+                loadData();
+            }
+        }
+    }
+
+
+    void readSMS(){
+        Uri uri=Uri.parse("content://sms/inbox");
+        Cursor cur=getContentResolver().query(uri,null,null,null,"date DECS");
+
+        if(cur!=null){
+            while(cur.moveToNext()){
+                String body=cur.getString(cur.getColumnIndexOrThrow("body"));
+                String address=cur.getString(cur.getColumnIndexOrThrow("address"));
+
+                processSMS(body,address);
+            }
+            cur.close();
+        }
+
+    }
+    void processSMS(String body,String address){
+        String service=getServiceFromAddress(address);
+        if(service.equals("სხვა")) return;
+
+        double amount=extractAmount(body);
+        String date=extractDate(body);
+        boolean isPayment = body.toLowerCase().contains("chairicxa");
+
+        if (date==null || date.isEmpty()) {
+            date=new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        }
+
+        if(isPayment){
+            Komunaluri k=db.getByName(service);
+            if(k!=null){
+                k.isPaid(true);
+                k.setDate(date);
+                db.update(k);
+            }
+            else{
+                db.add(new Komunaluri(service,amount,true,date));
+            }
+        }
+        else{
+            boolean exists=false;
+            List<Komunaluri> list=db.getall();
+            for(Komunaluri k : list){
+                if (k.getName().equals(service) &&
+                        k.getAmount()==amount &&
+                        k.getDate().equals(date) &&
+                        !k.isPaid()) {
+                    exists=true;
+                    break;
+                }
+            }
+            if(!exists){
+                db.add(new Komunaluri(service, amount, false, date));
+            }
+        }
+
+
+    }
+
+    double extractAmount(String body){
+        Pattern p=Pattern.compile("(\\d+(\\.\\d+)?)\\s*lari", Pattern.CASE_INSENSITIVE);
+        Matcher m=p.matcher(body);
+        if (m.find()) return Double.parseDouble(m.group(1));
+        return 0;
+
+    }
+
+    String extractDate(String body){
+        Pattern p = Pattern.compile("gtxovt\\s*(\\d{2}\\.\\d{2}\\.\\d{4})"); // unpaid date
+        Matcher m = p.matcher(body.toLowerCase());
+        if (m.find()) return m.group(1);
+        return "";
+    }
+    String getServiceFromAddress(String address){
+        address=address.toLowerCase();
+        if(address.equals("silknet")) return "ტელევიზია/ინტერნეტი";
+        if(address.equals("energopro")) return "დენი";
+        if(address.equals("socargeorgia")) return "გაზი";
+        if(address.equals("wyali")) return "წყალი";
+        if(address.equals("dasuftaveba")) return "დასუფთავება";
+        return "სხვა";
     }
 
     void loadData(){
