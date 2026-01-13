@@ -18,8 +18,9 @@
         android:id="@+id/homebtn">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp">
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/home">
         </ImageView>
         <TextView
             android:layout_width="wrap_content"
@@ -40,8 +41,9 @@
         android:id="@+id/statisticbtn">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp">
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/statistic">
         </ImageView>
         <TextView
             android:layout_width="wrap_content"
@@ -62,8 +64,10 @@
         android:id="@+id/historybtn">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp">
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/history"
+            >
         </ImageView>
         <TextView
             android:layout_width="wrap_content"
@@ -84,8 +88,9 @@
         android:id="@+id/settingscbtn">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp">
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/settings">
         </ImageView>
         <TextView
             android:layout_width="wrap_content"

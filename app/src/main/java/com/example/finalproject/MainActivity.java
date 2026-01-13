@@ -118,8 +118,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS)==PackageManager.PERMISSION_GRANTED){
+            readSMS();
+        }
         loadData();
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -136,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     void readSMS(){
         Uri uri=Uri.parse("content://sms/inbox");
-        Cursor cur=getContentResolver().query(uri,null,null,null,"date DECS");
+        Cursor cur=getContentResolver().query(uri,null,null,null,"date DESC");
 
         if(cur!=null){
             while(cur.moveToNext()){
@@ -201,8 +205,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String extractDate(String body){
-        Pattern p = Pattern.compile("gtxovt\\s*(\\d{2}\\.\\d{2}\\.\\d{4})"); // unpaid date
-        Matcher m = p.matcher(body.toLowerCase());
+        Pattern p=Pattern.compile("gtxovt\\s*(\\d{2}\\.\\d{2}\\.\\d{4})");
+        Matcher m=p.matcher(body.toLowerCase());
         if (m.find()) return m.group(1);
         return "";
     }

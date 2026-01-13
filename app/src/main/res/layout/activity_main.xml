@@ -41,7 +41,10 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="end"
-                android:src="@android:drawable/ic_input_add">
+                android:src="@drawable/restart"
+                android:background="@null"
+                android:contentDescription="Back"
+                android:scaleType="centerInside">
 
             </ImageButton>
         </LinearLayout>
@@ -91,7 +94,10 @@
                         android:id="@+id/imgdeni"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        app:tint="#2E7D32">
+                        android:src="@drawable/deni"
+                        android:background="@null"
+                        android:scaleType="centerInside"
+                        >
 
                     </ImageView>
 
@@ -156,7 +162,7 @@
                         android:id="@+id/imggass"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        app:tint="#2E7D32">
+                        android:src="@drawable/gazi">
 
                     </ImageView>
 
@@ -221,7 +227,7 @@
                         android:id="@+id/imgwyali"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        app:tint="#2E7D32">
+                        android:src="@drawable/wyali">
 
                     </ImageView>
 
@@ -286,7 +292,7 @@
                         android:id="@+id/imgdasuftaveba"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        app:tint="#2E7D32">
+                        android:src="@drawable/dasuftaveba">
 
                     </ImageView>
 
@@ -350,7 +356,7 @@
                         android:id="@+id/imginterneti"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        app:tint="#2E7D32">
+                        android:src="@drawable/tv">
 
                     </ImageView>
 
@@ -416,7 +422,7 @@
                         android:id="@+id/imgsxva"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        app:tint="#2E7D32">
+                        android:src="@drawable/other">
 
                     </ImageView>
 
