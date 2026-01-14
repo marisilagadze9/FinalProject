@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -101,10 +102,19 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity.this,Add.class);
-                startActivity(i);
+                if (ContextCompat.checkSelfPermission(
+                        MainActivity.this,
+                        Manifest.permission.READ_SMS
+                ) == PackageManager.PERMISSION_GRANTED) {
+
+                    readSMS();
+                }
+
+                loadData();
             }
         });
+
+
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS)!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_SMS},SMS_PERMISSION_CODE);
         }
@@ -154,12 +164,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
     void processSMS(String body,String address){
-        String service=getServiceFromAddress(address);
+
+
+        String service=getServiceFromBody(body);
         if(service.equals("სხვა")) return;
 
         double amount=extractAmount(body);
         String date=extractDate(body);
-        boolean isPayment = body.toLowerCase().contains("chairicxa");
+        Pattern payPattern=Pattern.compile("chairicxa|charicx|dafarulia", Pattern.CASE_INSENSITIVE);
+        Matcher m=payPattern.matcher(body);
+        boolean isPayment=m.find();
+
+        Log.d("PAYMENT_DEBUG", "SMS Body: " + body);
+        Log.d("PAYMENT_DEBUG", "Detected as payment: " + isPayment);
 
         if (date==null || date.isEmpty()) {
             date=new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
@@ -175,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
             else{
                 db.add(new Komunaluri(service,amount,true,date));
             }
+            loadData();
         }
         else{
             boolean exists=false;
@@ -190,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if(!exists){
                 db.add(new Komunaluri(service, amount, false, date));
+                loadData();
             }
         }
 
@@ -197,28 +216,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     double extractAmount(String body){
-        Pattern p=Pattern.compile("(\\d+(\\.\\d+)?)\\s*lari", Pattern.CASE_INSENSITIVE);
-        Matcher m=p.matcher(body);
-        if (m.find()) return Double.parseDouble(m.group(1));
+        Pattern p = Pattern.compile("(\\d+[\\.,]?\\d*)\\s*(lari)", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(body);
+        if (m.find()) {
+            return Double.parseDouble(m.group(1).replace(",", "."));
+        }
         return 0;
-
     }
+
+
 
     String extractDate(String body){
-        Pattern p=Pattern.compile("gtxovt\\s*(\\d{2}\\.\\d{2}\\.\\d{4})");
-        Matcher m=p.matcher(body.toLowerCase());
-        if (m.find()) return m.group(1);
+        Pattern p = Pattern.compile("(\\d{2}\\.\\d{2}\\.\\d{4})");
+        Matcher m = p.matcher(body);
+        if (m.find()) {
+            return m.group(1);
+        }
         return "";
     }
-    String getServiceFromAddress(String address){
-        address=address.toLowerCase();
-        if(address.equals("silknet")) return "ტელევიზია/ინტერნეტი";
-        if(address.equals("energopro")) return "დენი";
-        if(address.equals("socargeorgia")) return "გაზი";
-        if(address.equals("wyali")) return "წყალი";
-        if(address.equals("dasuftaveba")) return "დასუფთავება";
+
+
+    String getServiceFromBody(String body) {
+        body = body.toLowerCase();
+
+        if (body.contains("silknet") || body.contains("სილქნეტ"))
+            return "ტელევიზია/ინტერნეტი";
+
+        if (body.contains("energo") || body.contains("ენერგო"))
+            return "დენი";
+
+        if (body.contains("socar") || body.contains("გაზ"))
+            return "გაზი";
+
+        if (body.contains("წყალ") || body.contains("wyali"))
+            return "წყალი";
+
+        if (body.contains("dasuftaveba"))
+            return "დასუფთავება";
+
         return "სხვა";
     }
+
 
     void loadData(){
         List<Komunaluri> list=db.getall();
@@ -250,35 +288,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void updatecard(CardView card,TextView newamount,TextView newstatus,double a,boolean p,String date,Komunaluri k){
+
+    void updatecard(CardView card,TextView newamount,TextView newstatus,double a,boolean p,String date,Komunaluri k) {
         newamount.setText(a + "₾");
         if(p){
             newstatus.setText("გადახდილია - "+ date);
             card.setCardBackgroundColor(Color.parseColor("#E8F5E9"));
-        }
-        else{
-            newstatus.setText("ვადა: " +date);
+        } else {
+            newstatus.setText("ვადა: " + date);
             card.setCardBackgroundColor(Color.parseColor("#FDECEA"));
         }
-        newstatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String today=new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
 
 
-                newstatus.setText("გადახდილია - " + today);
-
-
-                card.setCardBackgroundColor(Color.parseColor("#E8F5E9"));
-
-
-                k.isPaid(true);
-                k.setDate(today);
-
-
-                db.update(k);
-            }
-        });
     }
 }

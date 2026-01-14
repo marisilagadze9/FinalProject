@@ -75,19 +75,28 @@ public class History extends AppCompatActivity {
 
         List<Komunaluri> filteres=new ArrayList<>();
 
-        for(Komunaluri k : allList){
-            boolean okm=true;
-            boolean okt=true;
+        int selectedMonthNumber = monthStringToIndex(monthsel);
 
-            if(!monthsel.equals("ყველა")){
-                String[] parts=k.getDate().split("/");
-                int m=Integer.parseInt(parts[1])-1;
-                okm=months[m+1].equals(monthsel);
+        for (Komunaluri k : allList) {
+            boolean okm = true;
+            boolean okt = true;
+
+
+            String[] parts;
+            if (k.getDate().contains("/")) {
+                parts = k.getDate().split("/");
+            } else {
+                parts = k.getDate().split("\\.");
             }
 
-            if(!typesel.equals(("ყველა"))){
-                okt=k.getName().equals(typesel);
+            int monthNumber = Integer.parseInt(parts[1].replaceFirst("^0+", ""));
 
+            if (!monthsel.equals("ყველა")) {
+                okm = monthNumber == selectedMonthNumber;
+            }
+
+            if (!typesel.equals("ყველა")) {
+                okt = k.getName().equals(typesel);
             }
 
             if(okm && okt){
@@ -97,4 +106,21 @@ public class History extends AppCompatActivity {
         adapter.updateList(filteres);
     }
 
+    int monthStringToIndex(String monthName) {
+        switch (monthName) {
+            case "იანვარი": return 1;
+            case "თებერვალი": return 2;
+            case "მარტი": return 3;
+            case "აპრილი": return 4;
+            case "მაისი": return 5;
+            case "ივნისი": return 6;
+            case "ივლისი": return 7;
+            case "აგვისტო": return 8;
+            case "სექტემბერი": return 9;
+            case "ოქტომბერი": return 10;
+            case "ნოემბერი": return 11;
+            case "დეკემბერი": return 12;
+            default: return 0; // "ყველა"
+        }
+    }
 }
