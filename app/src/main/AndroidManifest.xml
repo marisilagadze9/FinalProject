@@ -6,12 +6,17 @@
 
     </uses-permission>
 
-    <uses-permission android:name="android.permission.RECEIVE_SMS_SMS"
+    <uses-permission android:name="android.permission.RECEIVE_SMS"
         tools:ignore="PermissionImpliesUnsupportedChromeOsHardware">
 
     </uses-permission>
 
     <uses-permission android:name="android.permission.READ_SMS"
+        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware">
+
+    </uses-permission>
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"
         tools:ignore="PermissionImpliesUnsupportedChromeOsHardware">
 
     </uses-permission>
@@ -44,6 +49,11 @@
         </activity>
 
         <activity android:name=".Statistic">
+
+
+        </activity>
+
+        <activity android:name=".Settings">
 
 
         </activity>

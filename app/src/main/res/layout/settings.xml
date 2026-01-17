@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="16dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/backbtn"
+            android:src="@drawable/back"
+            android:background="@null"
+            >
+            
+        </ImageButton>
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="პარამეტრები"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            >
+            
+        </TextView>
+        
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/save"
+            android:src="@drawable/save"
+            android:background="@null">
+            
+        </ImageButton>
+    </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:background="#E0E0E0">
+
+    </View>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/swNotify"
+        android:text="შეტყობინებების ჩართვა"
+        android:textSize="16sp"
+        >
+
+    </Switch>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/swRepeat"
+        android:textSize="16sp"
+        android:text="განმეორებადი შეტობინება"
+        android:enabled="false"
+        android:layout_marginTop="8dp">
+
+    </Switch>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="რამდენი დღით ადრე "
+            android:textSize="16sp">
+
+        </TextView>
+
+        <NumberPicker
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/numberPickerDays"
+            android:enabled="false"
+            android:layout_marginStart="16dp">
+
+        </NumberPicker>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="შეტყობინების დრო"
+            android:layout_marginStart="16dp"
+            android:timePickerMode="spinner"
+            android:enabled="false"
+            >
+
+        </TextView>
+        
+        <TimePicker
+            android:id="@+id/timePickerNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:timePickerMode="spinner"
+            android:enabled="false">
+
+        </TimePicker>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </View>
+
+    <include
+        layout="@layout/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </include>
+    
+   
+
+</LinearLayout>

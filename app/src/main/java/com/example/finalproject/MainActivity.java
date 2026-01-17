@@ -24,11 +24,15 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -98,6 +102,16 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.bottom,new Navigation()).commit();
 
 
+        PeriodicWorkRequest request = new PeriodicWorkRequest.Builder(
+                ReminderWorker.class,
+                1, TimeUnit.DAYS
+        ).build();
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+                "reminder",
+                ExistingPeriodicWorkPolicy.REPLACE,
+                request
+        );
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override

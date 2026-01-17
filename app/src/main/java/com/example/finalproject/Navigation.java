@@ -39,6 +39,20 @@ public class Navigation extends Fragment {
              }
          });
 
+         statistic.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 startActivity(new Intent(getActivity(), Statistic.class));
+             }
+         });
+
+         settings.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 startActivity(new Intent(getActivity(), Settings.class));
+             }
+         });
+
          return v;
 
 
